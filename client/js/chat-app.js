@@ -2,15 +2,25 @@
     'use strict';
     window.chat = ns = (ns || {});
 
-    var $user;
-    var $msg;
-    var messageSection = $('.messages');
 
     ns.listenForMessages(function messageHandler(data) {
-        $user = data.username;
-        $msg = data.message;
-        messageSection.append('<p>' + $user + ' ' + $msg + '</p>');
+        var messageSection = $('.messages');
+        messageSection.append('<p>' + data.username + ' ' + data.message + '</p>');
     });
+
+
+    var $msg = $('.message').val();
+
+    $('form').on('submit', function (event) { //TODO name this function
+        event.preventDefault();
+        var $user = $('.username').val();
+        login($user);
+    });
+
+    function login(username) {
+        console.log(username);
+    }
+
 
 
 
