@@ -22,11 +22,10 @@
         user.val('');
     });
 
-    // function error(xhr) {
-    //     if(xhr.status === 404) {
-    //         $()
-    //     }
-    // }
+    function error(xhr) {
+        msgField
+            .append('<p>Sorry something isn\'t right, please check back later.</p>');
+    }
 
     /**
      * What should happen when user submits login.
@@ -57,14 +56,12 @@
     }
 
 
-
-
     msgField.on('submit', function submitText(event) {
         event.preventDefault();
 
         sendMsg(msg.val())
             .done(clearMsg)
-            .fail(/*FUNCTION*/); //TODO CREATE ERROR FUNCTION
+            .fail(error);
     });
 
     /**
@@ -92,7 +89,5 @@
             dataType: 'json'
         });
     }
-
-
 
 })(window.chat);
