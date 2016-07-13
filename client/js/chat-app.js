@@ -2,46 +2,96 @@
     'use strict';
     window.chat = ns = (ns || {});
 
+    var user = $('.username');
+    var msg = $('.message');
+    var msgField = $('.send-message');
+    var token;
+
+    $('.send-message input').hide();
 
     ns.listenForMessages(function messageHandler(data) {
-        var messageSection = $('.messages');
-        messageSection.append('<p>' + data.message + ' ' + data.username + '</p>');
+        msgField
+            .append('<p>' + data.message + ' ' + data.username + '</p>');
     });
 
-    var $user = $('.username');
-    var $msg = $('.message');
-
-    $('form').on('submit', function (event) { //TODO name this function
+    $('.login').on('submit', function sendUserName(event) {
         event.preventDefault();
-        login($user.val())
-            .done(foo)
+        login(user.val())
+            .done(startChat)
             .fail(error);
-        $user.val('');
+        user.val('');
     });
 
-    function foo(data) {
-        console.log(data.token);
+    // function error(xhr) {
+    //     if(xhr.status === 404) {
+    //         $()
+    //     }
+    // }
+
+    /**
+     * What should happen when user submits login.
+     * @param  {[object]} data [this is where token will be retrieved]
+     * @return {token}         [this will be used later with the messages]
+     */
+    function startChat(data) {
+        token = data.token;
     }
 
+    /**
+     * login will submit username and retrieve xhr object for the token
+     * @param  {[string]} username [what the user types as their username]
+     * @return {object}            [xhr object that contains the token that will be used]
+     */
     function login(username) {
-
-        var xhr = $.ajax({
+        $('.login').hide();
+        $('.send-message input').show();
+        return $.ajax({
             url: '/login',
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: JSON.stringify({username: username}),
+            data: JSON.stringify({'username': username}),
             dataType: 'json'
         });
-        return xhr;
     }
 
 
-    // function displayChat(data) {
-    //
-    // }
 
+
+    msgField.on('submit', function submitText(event) {
+        event.preventDefault();
+
+        sendMsg(msg.val())
+            .done(clearMsg)
+            .fail(/*FUNCTION*/); //TODO CREATE ERROR FUNCTION
+    });
+
+    /**
+     * clears message
+     * @return {void}
+     */
+    function clearMsg() {
+        msg.val('');
+    }
+
+    /**
+     * what happens when a message is sent
+     * @param  {[string]} message [the message]
+     * @return {[object]}         [xhr object data]
+     */
+    function sendMsg(message) {
+        return $.ajax({
+            url: '/chat',
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            data: JSON.stringify({ 'message': message }),
+            dataType: 'json'
+        });
+    }
 
 
 
