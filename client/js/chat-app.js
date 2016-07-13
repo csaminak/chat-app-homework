@@ -13,12 +13,19 @@
 
     $('form').on('submit', function (event) { //TODO name this function
         event.preventDefault();
-        login($user.val());
+        login($user.val())
+            .done(foo)
+            .fail(error);
         $user.val('');
     });
 
+    function foo(data) {
+        console.log(data.token);
+    }
+
     function login(username) {
-        $.ajax({
+
+        var xhr = $.ajax({
             url: '/login',
             method: 'post',
             headers: {
@@ -26,18 +33,14 @@
             },
             data: JSON.stringify({username: username}),
             dataType: 'json'
-        })
-        .done(function(data){
-            displayChat(data);
-        })
-        .fail(function errorMsg(xhr){
-            console.log('test = fail for some reason');
         });
+        return xhr;
     }
 
-    function displayChat(data) {
-        
-    }
+
+    // function displayChat(data) {
+    //
+    // }
 
 
 
