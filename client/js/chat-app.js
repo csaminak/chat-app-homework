@@ -5,16 +5,16 @@
 
     ns.listenForMessages(function messageHandler(data) {
         var messageSection = $('.messages');
-        messageSection.append('<p>' + data.username + ' ' + data.message + '</p>');
+        messageSection.append('<p>' + data.message + ' ' + data.username + '</p>');
     });
 
-    var $user;
-    // var $msg = $('.message').val();
+    var $user = $('.username');
+    var $msg = $('.message');
 
     $('form').on('submit', function (event) { //TODO name this function
         event.preventDefault();
-        $user = $('.username').val();
-        login($user);
+        login($user.val());
+        $user.val('');
     });
 
     function login(username) {
@@ -27,12 +27,16 @@
             data: JSON.stringify({username: username}),
             dataType: 'json'
         })
-        .done(function displayChat(data){
-            console.log(data);
+        .done(function(data){
+            displayChat(data);
         })
         .fail(function errorMsg(xhr){
             console.log('test = fail for some reason');
         });
+    }
+
+    function displayChat(data) {
+        
     }
 
 
