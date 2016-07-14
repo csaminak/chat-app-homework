@@ -11,7 +11,7 @@
 
     ns.listenForMessages(function messageHandler(data) {
         $('.messageSection')
-            .append('<p>' + data.message + ' ' + data.username + '</p>');
+            .append('<p class="msg">' + data.message + ' ' + data.username + '</p>');
     });
 
     $('.login').on('submit', function sendUserName(event) {

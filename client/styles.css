@@ -1,11 +1,59 @@
 .messageSection p:first-child {
   color: #2f0065;
+  background-color: #ffffff;
   font-size: 2em;
-  margin-left: 50px; }
+  margin-left: 50px;
+  text-shadow: 2px 2px 1px #ecdcf2; }
+
+[type='submit'] {
+  box-sizing: content-box;
+  font-size: 1em;
+  border-radius: 10px;
+  color: #2f0065;
+  background-color: #ecdcf2;
+  border-color: #ecdcf2; }
+  [type='submit']:hover {
+    box-shadow: 2px 2px 1px #2f0065; }
+
+.username, .message {
+  box-sizing: content-box;
+  font-size: 1.5em;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 10px;
+  color: #2f0065; }
+  .username:hover, .message:hover {
+    box-shadow: 2px 2px 1px #2f0065; }
+
+.message {
+  margin-left: 65px; }
 
 .login {
   position: absolute;
   top: 100px;
   left: 65px; }
+
+.username {
+  box-sizing: content-box;
+  font-size: 1.5em;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 10px;
+  color: #2f0065; }
+  .username:hover {
+    box-shadow: 2px 2px 1px #2f0065; }
+
+.msg:nth-child(even) {
+  color: #2f0065;
+  background-color: #ecdcf2; }
+
+.msg:not(:first-child):nth-child(odd) {
+  color: #ecdcf2;
+  background-color: #2f0065; }
+
+.msg:not(:first-child) {
+  border-radius: 10px;
+  margin-left: 50px;
+  text-indent: 1em; }
 
 /*# sourceMappingURL=styles.css.map */

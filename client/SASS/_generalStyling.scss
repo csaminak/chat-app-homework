@@ -1,0 +1,37 @@
+.messageSection p:first-child {
+    color: $themeDarkColor;
+    background-color: #ffffff;;
+    font-size: 2*$themeFontSize;
+    margin-left: $messagesMarginLeft;
+    text-shadow: 2px 2px 1px $themeLightColor;
+}
+
+[type='submit'] {
+    box-sizing: content-box;
+    font-size: $themeFontSize;
+    border-radius: $borderRadius;
+    color: $themeDarkColor;
+    background-color: $themeLightColor;
+    border-color: $themeLightColor;
+
+    &:hover {
+        box-shadow: 2px 2px 1px $themeDarkColor;
+    }
+}
+
+.username, .message {
+    box-sizing: content-box;
+    font-size: 1.5*$themeFontSize;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: $borderRadius;
+    color: $themeDarkColor;
+
+    &:hover {
+        box-shadow: 2px 2px 1px $themeDarkColor;
+    }
+}
+
+.message {
+    margin-left: $messageOffset;
+}

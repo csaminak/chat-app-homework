@@ -1,0 +1,17 @@
+.msg:nth-child(even) {
+    color: $themeDarkColor;
+    background-color: $themeLightColor;
+
+}
+
+.msg:not(:first-child):nth-child(odd) {
+    color: $themeLightColor;
+    background-color: $themeDarkColor;
+
+}
+
+.msg:not(:first-child) {
+    border-radius: $borderRadius;
+    margin-left: $messagesMarginLeft;
+    text-indent: 1em;
+}
