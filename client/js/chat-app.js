@@ -10,7 +10,7 @@
     $('.send-message input').hide();
 
     ns.listenForMessages(function messageHandler(data) {
-        msgField
+        $('.messageSection')
             .append('<p>' + data.message + ' ' + data.username + '</p>');
     });
 
@@ -22,7 +22,7 @@
         user.val('');
     });
 
-    function error(xhr) {
+    function error() {
         msgField
             .append('<p>Sorry something isn\'t right, please check back later.</p>');
     }
